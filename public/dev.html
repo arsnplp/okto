@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Okto · Simulateur</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<div class="sim">
+  <div class="phone">
+    <div class="bar"><span aria-hidden="true">🐙</span> Okto <span class="pill">simulateur</span></div>
+    <div class="chat" id="chat" aria-live="polite"></div>
+    <div class="chips">
+      <button class="btn small" data-say="recap">recap</button>
+      <button class="btn small" data-say="demain">demain</button>
+      <button class="btn small" data-say="semaine">semaine</button>
+      <button class="btn small" data-say="réglages">réglages</button>
+      <button class="btn small" data-say="aide">aide</button>
+    </div>
+    <form class="composer" id="form">
+      <input type="text" id="text" placeholder="Écris à Okto…" autocomplete="off" aria-label="Message">
+      <button class="btn primary">Envoyer</button>
+    </form>
+  </div>
+  <div>
+    <h1>Simulateur Okto</h1>
+    <p class="sub">Cette page remplace WhatsApp pour tester en local. Les messages ne partent nulle part.</p>
+    <h2>Scénario de test</h2>
+    <div class="card">
+      <ol style="margin:0;padding-left:20px">
+        <li>Écris « Salut » : Okto t'envoie ton lien perso.</li>
+        <li>Clique « Charger des rendus de démo » ci-dessous.</li>
+        <li>Écris « recap » puis « demain ».</li>
+        <li>Clique « Déclencher le rappel de la veille ».</li>
+        <li>Ouvre ton lien perso pour connecter ton vrai Moodle.</li>
+      </ol>
+    </div>
+    <h2>Actions</h2>
+    <div class="card">
+      <div class="actions" style="margin-top:0">
+        <button class="btn" data-action="demo">Charger des rendus de démo</button>
+        <button class="btn" data-action="reminder">Déclencher le rappel de la veille</button>
+        <button class="btn" data-action="weekly">Déclencher le récap de la semaine</button>
+        <button class="btn" data-action="sync">Lancer une synchro</button>
+        <button class="btn danger" data-action="reset">Repartir de zéro</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/static/dev.js" defer></script>
+</body>
+</html>

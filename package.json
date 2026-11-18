@@ -1,0 +1,16 @@
+{
+  "name": "okto",
+  "version": "0.1.0",
+  "description": "Okto, le bot WhatsApp qui regroupe tes rendus (Moodle, Outlook, Teams) et les met dans Google Agenda",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Okto · Mes réglages</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <div class="logo" aria-hidden="true">🐙</div>
+    <div>
+      <h1>Okto</h1>
+      <p class="sub" id="who">Chargement…</p>
+    </div>
+  </header>
+
+  <div id="banner" class="banner" hidden role="status"></div>
+
+  <div id="content" hidden>
+    <h2>Mes prochains rendus</h2>
+    <div class="card">
+      <ul class="tasks" id="tasks"></ul>
+      <p class="hint" id="noTasks" hidden>Rien pour l'instant. Connecte une source ci-dessous.</p>
+      <p class="hint" id="undated" hidden></p>
+      <div class="actions">
+        <button class="btn small" id="syncBtn">Actualiser maintenant</button>
+        <button class="btn small" id="testBtn">M'envoyer un message de test</button>
+      </div>
+    </div>
+
+    <h2>Mes sources</h2>
+
+    <div class="card" id="moodleCard">
+      <div class="row">
+        <div><div class="title">DeVinci (Moodle)</div><p class="hint" id="moodleState"></p></div>
+        <span class="pill" id="moodlePill"></span>
+      </div>
+      <div id="moodleForm">
+        <div class="inline" style="margin-top:12px">
+          <input type="text" id="moodleValue" placeholder="Colle ta clé Moodle ou ton lien ici" autocomplete="off" spellcheck="false" aria-label="Clé ou lien Moodle" style="flex:1">
+          <button class="btn primary" id="moodleBtn">Connecter</button>
+        </div>
+        <details>
+          <summary>Où trouver ma clé ?</summary>
+          <ol>
+            <li><b>Le plus simple.</b> Connecte-toi à Moodle puis ouvre <a id="tokenPage" target="_blank" rel="noopener">la page Clés de sécurité</a>. Copie la clé de la ligne « Moodle mobile web service » et colle-la ici.</li>
+            <li><b>Si la page est vide.</b> Sur ordinateur, connecté à Moodle, ouvre les outils de développement du navigateur (onglet Réseau), puis <a id="launchLink" target="_blank" rel="noopener">ce lien</a>. Copie l'adresse qui commence par <code>moodlemobile://token=</code> et colle-la ici en entier.</li>
+            <li><b>Solution de secours (devoirs datés seulement).</b> Dans Moodle : Calendrier, Importer ou exporter, Exporter, « Tous les événements », puis « Obtenir l'URL du calendrier ». Colle ce lien ici.</li>
+          </ol>
+        </details>
+      </div>
+      <div class="actions" id="moodleActions" hidden>
+        <button class="btn small danger" id="moodleOff">Déconnecter</button>
+      </div>
+    </div>
+
+    <div class="card" id="msCard">
+      <div class="row">
+        <div><div class="title">Outlook et Teams</div><p class="hint" id="msState"></p></div>
+        <span class="pill" id="msPill"></span>
+      </div>
+      <div class="actions">
+        <button class="btn primary" id="msOn">Se connecter avec Microsoft</button>
+        <button class="btn small danger" id="msOff" hidden>Déconnecter</button>
+      </div>
+    </div>
+
+    <div class="card" id="googleCard">
+      <div class="row">
+        <div><div class="title">Google Agenda</div><p class="hint" id="googleState"></p></div>
+        <span class="pill" id="googlePill"></span>
+      </div>
+      <div class="actions">
+        <button class="btn primary" id="googleOn">Se connecter avec Google</button>
+        <button class="btn small danger" id="googleOff" hidden>Déconnecter</button>
+      </div>
+    </div>
+
+    <h2>Mes rappels</h2>
+    <div class="card">
+      <div class="row">
+        <div><div class="title">Rappel de la veille</div><p class="hint">Les rendus du lendemain, envoyés sur WhatsApp.</p></div>
+        <div class="inline">
+          <input type="time" id="reminderTime" aria-label="Heure du rappel">
+          <label class="switch"><input type="checkbox" id="reminderOn" aria-label="Activer le rappel de la veille"><span></span></label>
+        </div>
+      </div>
+      <div class="row">
+        <div><div class="title">Me prévenir même s'il n'y a rien</div><p class="hint">Un message « rien à rendre demain ».</p></div>
+        <label class="switch"><input type="checkbox" id="notifyEmpty" aria-label="Prévenir même s'il n'y a rien"><span></span></label>
+      </div>
+      <div class="row">
+        <div><div class="title">Récap de la semaine</div><p class="hint">Les 7 jours à venir.</p></div>
+        <div class="inline">
+          <select id="weeklyDay" aria-label="Jour du récap">
+            <option value="1">Lundi</option><option value="2">Mardi</option><option value="3">Mercredi</option><option value="4">Jeudi</option>
+            <option value="5">Vendredi</option><option value="6">Samedi</option><option value="0">Dimanche</option>
+          </select>
+          <input type="time" id="weeklyTime" aria-label="Heure du récap">
+          <label class="switch"><input type="checkbox" id="weeklyOn" aria-label="Activer le récap de la semaine"><span></span></label>
+        </div>
+      </div>
+      <div class="row">
+        <div><div class="title">Alerte nouveau rendu</div><p class="hint">Un message dès qu'un prof ajoute un devoir.</p></div>
+        <label class="switch"><input type="checkbox" id="newTaskNotif" aria-label="Alerte nouveau rendu"><span></span></label>
+      </div>
+      <div class="row">
+        <div><div class="title">Ajouter à Google Agenda</div><p class="hint">Chaque rendu daté devient un événement.</p></div>
+        <label class="switch"><input type="checkbox" id="calendarSync" aria-label="Ajouter à Google Agenda"><span></span></label>
+      </div>
+      <div class="row">
+        <div><div class="title">Tout mettre en pause</div><p class="hint">Plus aucun message automatique.</p></div>
+        <label class="switch"><input type="checkbox" id="paused" aria-label="Mettre en pause"><span></span></label>
+      </div>
+    </div>
+
+    <div id="devBox" hidden>
+      <h2>Mode test</h2>
+      <div class="card">
+        <p class="hint" style="margin-top:0">Charge de faux rendus pour essayer Okto sans connecter de compte.</p>
+        <div class="actions">
+          <button class="btn small" id="demoOn">Charger des rendus de démo</button>
+          <button class="btn small" id="demoOff">Retirer la démo</button>
+        </div>
+      </div>
+    </div>
+
+    <h2>Mes données</h2>
+    <div class="card">
+      <p class="hint" style="margin-top:0">Okto garde la liste de tes rendus et les accès que tu lui as donnés, chiffrés. Aucun mot de passe, aucun mail entier.</p>
+      <div class="actions"><button class="btn small danger" id="deleteAll">Supprimer mon compte Okto et toutes mes données</button></div>
+    </div>
+  </div>
+</main>
+<script src="/static/app.js" defer></script>
+</body>
+</html>
